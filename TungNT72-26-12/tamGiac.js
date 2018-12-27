@@ -1,4 +1,5 @@
 function R(n){
+    debugger
     var a = [];
         a[0] = [1];
         a[1] = [1,1];
@@ -12,5 +13,6 @@ function R(n){
     }
     return a;
 }
-    
+
+
     
