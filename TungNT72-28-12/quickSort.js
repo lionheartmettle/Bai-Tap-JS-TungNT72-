@@ -23,8 +23,8 @@ function quickSort (arr, low, hight) {
         pi = partition(arr, low, hight);
         quickSort(arr, low, pi - 1);  // Before pi
         quickSort(arr, pi + 1, hight); // After pi
-
+        return arr;
     } else {
-        return;
+        return arr;
     }
 }
