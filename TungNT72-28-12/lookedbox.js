@@ -24,7 +24,6 @@ function withBoxUnlocked(body) {
     rs = box.content;
     box.lock();
   }
-  
 }
 
 withBoxUnlocked(function() {
