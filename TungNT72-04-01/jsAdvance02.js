@@ -9014,12 +9014,15 @@ var fullName2 = users.map(function(i) {
   return i.first_name + " " + i.last_name;
 });
 // tao key theo camelCase
-users.forEach(function(i) {
-  i.firstName = i.first_name;
-  i.lastName = i.last_name;
-  delete i.first_name;
-  delete i.last_name;
-  return i;
+var usrersCamel = users.map(function(i) {  
+  return {
+    age : i.age,
+    email : i.email,
+    firstName : i.first_name,
+    gender : i.gender,
+    id : i.id,
+    lastName : i.last_name
+  };
 });
 // Tinh tuoi trung binh
 var avg = users.reduce(function(a, b) {
