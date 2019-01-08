@@ -313,6 +313,8 @@ function exp(arr) {
 }
 // var sae = [mul, 5, 11];
 // console.log(exp(42)); 
+//2.27
+
 
 
 
