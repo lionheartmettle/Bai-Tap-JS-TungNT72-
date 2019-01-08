@@ -238,11 +238,82 @@ function gensymff(fn,begin) {
 // console.log(genH());
 //2.23
 function fibonaccif(num1, num2) {
-  return function () {
-    // if () {
-
-    // }
-    return num1 + num2;
+  let a = [];
+  let count = 0;
+  function foo () {
+    if (count == 0) {
+      count++;
+      a.push(num1);
+      return num1;
+    }
+    if (count == 1) {
+      count++;
+      a.push(num2);
+      return num2;
+    }
+    a.push(a[count - 1] + a[count - 2]);
+    return a[count++];
   }
+  return foo;  
 }
+// var fib = fibonaccif(0, 1); // must by fibonaccif(0, 1)
+// fib(); // 0
+// fib(); // 1
+// fib(); // 1
+// fib(); // 2
+// fib(); // 3
+// console.log(fib()); // 5
+//2.24
+function counter(num) {
+  var obj = {
+    down : function () {
+      return --num;
+    },
+    up : function () {
+      return ++num;
+    }
+  }
+  return obj;
+}
+// var obj = counter(10);
+// var up = obj.up;
+// var down = obj.down;
+// console.log(up());
+// console.log(up());
+// console.log(down());
+//2.25
+function revocable(fn) {
+  var lock = true;
+  var obj = {    
+    invoke : function (num1, num2) {      
+      if (lock) {
+        return fn(num1, num2);
+      }
+      return undefined;
+    },
+    revoke : function () {      
+      lock = false;
+      return;
+    }
+  }
+  return obj;
+}
+// var rev = revocable(add);
+// var addRev = rev.invoke;
+// rev.revoke();
+// var rev2 = revocable(add);
+// var addRev2 = rev2.invoke;
+// console.log(addRev2(3, 4)); 
+//2.26
+function exp(arr) {
+  if (typeof(arr) == "number") {
+    return arr;
+  }
+  return arr[0](arr[1],arr[2]);
+}
+// var sae = [mul, 5, 11];
+// console.log(exp(42)); 
+
+
+
 
