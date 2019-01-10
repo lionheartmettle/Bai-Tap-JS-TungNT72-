@@ -314,8 +314,80 @@ function exp(arr) {
 // var sae = [mul, 5, 11];
 // console.log(exp(42)); 
 //2.27
-
-
+function expp(n) {
+  return n[0](n[1][0](n[1][1][0](n[1][1][1]),n[1][2][0](n[1][2][1]))); 
+}
+// var nae = [
+//   Math.sqrt,
+//   [ add,
+//     [square, 3],
+//     [square, 4]
+//   ]
+// ];
+// console.log(expp(nae));
+//2.28
+function addg(n) {
+  let a = 0;
+  a += n;
+  function adds(m) {
+    if (m == undefined) {
+      return a;
+    }
+    a += m;
+    return adds;
+  }
+  if (n == undefined) {
+    return undefined;
+  }
+  return adds;
+}
+// console.log(addg()); // undefined
+// console.log(addg(2)()); // 2
+// console.log(addg(2)(7)()); // 9
+// console.log(addg(3)(0)(4)()); // 7
+// console.log(addg(2)()); // 2
+//2.29
+function liftg(fn) {
+  let a = 1;
+  function dequy(n) {
+    if (n == undefined) {
+      return undefined;
+    }
+    a = fn(a,n);
+    function dequy2(m) {
+      if (m == undefined) {
+        return a;
+      }
+      a = fn(a,m);
+      return dequy2;
+    }
+    return dequy2;
+  }
+  return dequy;
+}
+// console.log(liftg(mul)()); // undefined
+// console.log(liftg(mul)(3)()); // 3
+// console.log(liftg(mul)(3)(0)(4)()); // 0
+// console.log(liftg(mul)(1)(2)(4)(8)()); // 64
+//2.30
+function arrayg(n) {
+  let ar = [];
+  if (n == undefined) {
+    return ar;
+  }
+  function dequyArr(m) {
+    if (m == undefined) {
+      return ar;
+    }
+    ar.push(m);
+    return dequyArr;
+  }
+  ar.push(n);
+  return dequyArr;
+}
+// console.log(arrayg()); // []
+// console.log(arrayg(3)(4)()); // [3, 4]
+// console.log(arrayg(3)(4)(5)()); // [3,4,5]
 
 
 
