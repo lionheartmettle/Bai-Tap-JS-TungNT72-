@@ -23,7 +23,24 @@ Vertor.prototype.minus = function (obj) {
 //EX2 :
 class Group {
     constructor() {
-        
+        this.member = [];
     }
-    
+    has(value) {
+        this.member.includes(value);
+        return 
+    }
+    add(value) {
+        if (!this.has(value)) {
+            this.member.push(value);
+        }        
+    }
+    delete(value) {
+        this.members = this.members.filter(v => v !== value);
+    }
+    static from(arr) {
+        let group = new Group;
+        for (let i of arr) {
+            group.add(i);
+        }
+    }
 }
