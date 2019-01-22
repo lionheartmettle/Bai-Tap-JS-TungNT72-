@@ -14,6 +14,10 @@
       });
     });
   }
+  // Dung fetch de get API thay vi dung $.get cua Jquery.
+  function getData2(url) {
+    return fetch(url).then(response => response.json());
+  }
 
   function getPostById(id) {
     return getData(POST_API + "?userId=" + id);
@@ -26,57 +30,58 @@
   function DemoController($scope) {
     // Your Code Here
     //Cach dung Async Await
-    let myUsers;
-    (async function() {
-      await $.get(USER_API, function(users) {
-        myUsers = users;              
-      });
-      myUsers.map(async function(user, index1) {
-        await $.get(POST_API + "?userId=" + user.id, function(posts) {
-          myUsers[index1].posts = posts;
-          user.posts.map(async function(post, index2) {
-            await $.get(COMMENT_API + "?postId=" + post.id, function(comments) {
-              myUsers[index1].posts[index2].comments = comments;
-              $scope.$apply(function() {
-                $scope.users = myUsers;
-              });
-            });  
-          });
-        });
-      });
-      console.log(myUsers);
-    })();
-
-    //Cach dung promiseAll :
-    // let myUser;
-    // getData(USER_API)
-    //   .then(users => {
-    //     myUser = users;
-    //     return Promise.all(
-    //       users.map(user => {
-    //         return getPostById(user.id);
-    //       })
-    //     );
-    //   })
-    //   .then((listPosts) => {
-    //     return listPosts.map((posts,index) => {
-    //       myUser[index].posts = posts;
-    //       return Promise.all(posts.map((post) => {
-    //         return getCommentById(post.id);
-    //       }));
-    //     });
-    //   })
-    //   .then((data) => {console.log(data);return Promise.all(data)})
-    //   .then((us) => {
-    //     us.map((u,index1) => {
-    //       u.map((p,index2) => {
-    //         myUser[index1].posts[index2].comments = p;
+    // let myUsers;
+    // (async function() {
+    //   await $.get(USER_API, function(users) {
+    //     myUsers = users;
+    //   });
+    //   myUsers.map(async function(user, index1) {
+    //     await $.get(POST_API + "?userId=" + user.id, function(posts) {
+    //       myUsers[index1].posts = posts;
+    //       user.posts.map(async function(post, index2) {
+    //         await $.get(COMMENT_API + "?postId=" + post.id, function(comments) {
+    //           myUsers[index1].posts[index2].comments = comments;
+    //           $scope.$apply(function() {
+    //             $scope.users = myUsers;
+    //           });
+    //         });
     //       });
     //     });
-    //     $scope.$apply(function() {
-    //       $scope.users = myUser;
-    //     });
     //   });
+    //   console.log(myUsers);
+    // })();
+
+    //Cach dung promiseAll :
+    let myUser;
+    getData(USER_API)
+      .then(users => {
+        myUser = users;
+        return Promise.all(
+          users.map(user => {
+            return getPostById(user.id);
+          })
+        );
+      })
+      .then((listPosts) => {
+        return Promise.all(listPosts.map((posts,index) => {
+          myUser[index].posts = posts;
+          return Promise.all(posts.map((post) => {
+            return getCommentById(post.id);
+          }));
+        }));
+      })
+      //.then((data) => {console.log(data);return Promise.all(data)})
+      .then((us) => {
+        //console.log(us);
+        us.map((u,index1) => {
+          u.map((p,index2) => {
+            myUser[index1].posts[index2].comments = p;
+          });
+        });
+        $scope.$apply(function() {
+          $scope.users = myUser;
+        });
+      });
 
     // Cach dung promise (bi hell)
     // let listComment;

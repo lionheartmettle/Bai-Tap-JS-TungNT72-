@@ -50,4 +50,39 @@ function findLargest(arr) {
   mul(0, 0, arr);
   return maxMulArr(r);
 }
-console.log(findLargest([[1, 2, 30],[4, 5, 6],[7, 8, 9]]));
+
+//console.log(findLargest([[1, 2, 30],[4, 5, 6],[7, 8, 9]]));
+
+//cach tao 2 matrix :
+function createMatrix(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    newArr[i] = [];
+  }
+  newArr[0][0] = arr[0][0];
+  for (let i = 1; i < arr.length; i += 1) {
+    newArr[i][0] = arr[i][0] * newArr[i - 1][0];
+  }
+  for (let j = 1; j < arr[0].length; j += 1) {
+    newArr[0][j] = arr[0][j] * newArr[0][j - 1];
+  }
+  return newArr;
+}
+function findLargest2(arr) {
+  debugger;
+  let matrixMax = createMatrix(arr);
+  let matrixMin = createMatrix(arr);
+  for (let i = 1; i < arr.length; i += 1) {
+    for (let j = 1; j < arr[0].length; j += 1) {
+      let array = [];
+      array.push(matrixMax[i - 1][j] * arr[i][j]);
+      array.push(matrixMax[i][j - 1] * arr[i][j]);
+      array.push(matrixMin[i - 1][j] * arr[i][j]);
+      array.push(matrixMin[i][j - 1] * arr[i][j]);
+      matrixMax[i][j] = Math.max.apply(Math, array);
+      matrixMin[i][j] = Math.min.apply(Math, array);
+    }
+  }
+  return matrixMax[arr.length - 1][arr[0].length - 1];
+}
+console.log(findLargest2([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));
