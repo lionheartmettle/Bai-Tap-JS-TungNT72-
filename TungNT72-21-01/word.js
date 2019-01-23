@@ -101,8 +101,14 @@ var defaults = {
 
 // YOUR CODE HERE
 function response(obj) {
-  obj.bar = defaults.bar;
-  obj.bam.qam = defaults.bam.qam  
+  // obj.bar = defaults.bar;
+  // obj.bam.qam = defaults.bam.qam;
+  ({
+    bar: obj.bar,
+    bam: {
+      qam: obj.bam.qam
+    }
+  } = defaults);
   check(obj); // true
 }
 
