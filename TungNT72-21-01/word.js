@@ -42,7 +42,8 @@ var x = 2,
   //   return 4;
   // }
   for (var i = 0; i < x; i++) {
-    fns.push(() => x-1);
+    let j = i;
+    fns.push((j) => j);
   }
 })();
 
