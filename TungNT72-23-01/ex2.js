@@ -2,27 +2,20 @@ const fs = require("fs");
 let arr = [];
 
 //Cach 1 : CallBack
-// fs.readFile("./numfiles/1024", "utf-8", function(err, data) {
-//   if (err) {
-//     throw err;
-//   }
-//   let fileNumber = Number(data.slice(26, data.length - 4));
-//   let binary = Number(data.slice(data.length - 2, data.length - 1));
-//   arr.push(binary);
-//   return run(fileNumber);
-// });
-
 // function run(fileNumber) {
 //   fs.readFile(`./numfiles/${fileNumber}`, "utf-8", function(err, data) {
 //     if (err) {
-//       throw arr.join('');
+//       console.log(`Not found file : ` + fileNumber);
+//       console.log(arr.join(''));
+//       return;
 //     }
-//     let fileNumber = Number(data.slice(26, data.length - 4));
+//     let fileName = Number(data.slice(26, data.length - 4));
 //     let binary = Number(data.slice(data.length - 2, data.length - 1));
 //     arr.push(binary);
-//     return run(fileNumber);
+//     run(fileName);
 //   });
 // }
+// run(1024);
 
 //Cach 2 : Promise
 function getPromise(fileNumber) {  
@@ -39,15 +32,15 @@ function getPromise(fileNumber) {
     });
   }).then((data) => getPromise(data));
 }
-fs.readFile("./numfiles/1024", "utf-8", function(err, data) {
-  if (err) {
-    throw err;
-  }
-  let fileNumber = Number(data.slice(26, data.length - 4));
-  let binary = Number(data.slice(data.length - 2, data.length - 1));
-  arr.push(binary);  
-  getPromise(fileNumber).catch(function(e) {
-    console.log(arr.join('')); 
-  });
+getPromise(1024).catch(function(e) {
+  console.log(arr.join('')); 
 });
+//Cach 3 : Async - Await
+async function read() {
+  let res = '';
+  let fileName = '1024';
 
+  do {
+
+  } while(fileName != undefined)
+}

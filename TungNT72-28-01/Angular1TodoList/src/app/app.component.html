@@ -1,0 +1,21 @@
+<div class="main">
+  <h1>Todo Lists</h1>
+  <h4>Enter text into the input field to add items to your list.</h4>
+  <h4>Click the item to mark it as complete.</h4>
+  <h4>Click the "X" to remove the item from your list.</h4>
+</div>
+<div style="text-align: center">
+  <input type="text" placeholder="Enter Todo" #postInput />
+  <button (click)="addTodo(postInput)">Add</button>
+  <ul>
+    <li
+      *ngFor="let i of arr"
+      (click)="change(i)"
+      [ngClass]="{ classTodo: i.boo }"
+    >
+      Task Name {{ i.num }} Complete : {{ i.boo }}
+      <button (click)="deleteTodo(i)">Delete</button>
+    </li>
+  </ul>
+  
+</div>

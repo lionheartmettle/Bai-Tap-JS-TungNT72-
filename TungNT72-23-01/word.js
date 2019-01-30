@@ -27,12 +27,16 @@ function fibonaci(n) {
   if (n <= 1) {
     return 1;
   }
-  m.set(`f${n - 1}`, fibonaci(n - 1));
-  m.set(`f${n - 2}`, fibonaci(n - 2));
-  return m.get(`f${n - 1}`) + m.get(`f${n - 2}`);
+  if(m.has(n)) {
+    return m.get(n);
+  }
+  m.set(`f${n}`, fibonaci(n - 1) + fibonaci(n - 2));  
+  return m.get(`f${n}`);
 }
 // fibonaci(5);
 // console.log(fibonaci(5));
+//Cach 2 cua EX3 :
+
 //EX4 :
 var users = [
   {
