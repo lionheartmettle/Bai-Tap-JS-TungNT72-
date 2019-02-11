@@ -1,4 +1,9 @@
-<li (click)="change(i)" [ngClass]="{ classTodo: i.boo }">
-  Task Name {{ i.num }} Complete : {{ i.boo }}
-  <button (click)="deleteTodo(i)">Delete</button>
-</li>
+<p>todo work</p>
+<div>
+  <input placeholder="Enter todoChild" [(ngModel)]="text"/>
+  <button (click)="addTask()">Add-Child</button>
+</div>
+
+<ul>
+    <li *ngFor="let t of list"><app-todo-child [task]="t" (deleteEvent)="deleteTask($event)"></app-todo-child></li>
+</ul>

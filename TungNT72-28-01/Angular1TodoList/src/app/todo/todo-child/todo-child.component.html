@@ -1,0 +1,4 @@
+<p (click)="changeComplete()">
+  {{task.value + ' ' + task.ipx + ' '}} <span *ngIf="isComplete">Complete</span>
+  <button (click)="delete()">Delete</button>
+</p>

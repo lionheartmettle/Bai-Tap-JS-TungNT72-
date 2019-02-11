@@ -6,23 +6,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  count = 0;
-  arr = [];
-  addTodo(postInput: HTMLTextAreaElement) {
-    this.arr.push({ num: postInput.value, boo: false });
-    postInput.value = "";
-  }
-  deleteTodo(item) {
-    this.arr = this.arr.filter(b => {
-      return item.num != b.num;
-    });
-  }
-  change(item) {
-    item.boo = !item.boo;
-  }
-  constructor() { }
+  list = [];
+  text = '';
+  id = 0;
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  addTask() {
+    this.id = genId.next().value;
+    this.list.push({value: this.text, ipx: this.id});
+    this.text = '';
   }
+  deleteTask(task) {
+    this.list = this.list.filter(t => t.ipx !== task.ipx);
+  }
+}
+const genId = gen();
 
+function* gen() {
+  let i = 0;
+  while (true) {
+    yield i++;
+  }
 }

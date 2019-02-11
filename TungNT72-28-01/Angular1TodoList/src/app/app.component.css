@@ -1,4 +1,4 @@
-.main {
+/*.main {
   text-align: center;
   font-family: sans-serif;
 }
@@ -13,9 +13,11 @@ ul {
   padding-right: 35%;
 }
 li {
-  float: left;
-  /* width: 100%; */
+  float: left;  
 }
 .classTodo {
   background-color: chartreuse;
+} */
+.isComplete {
+  background-color: aquamarine;
 }

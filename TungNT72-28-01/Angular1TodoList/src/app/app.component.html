@@ -4,7 +4,7 @@
   <h4>Click the item to mark it as complete.</h4>
   <h4>Click the "X" to remove the item from your list.</h4>
 </div>
-<div style="text-align: center">
+<!-- <div style="text-align: center">
   <input type="text" placeholder="Enter Todo" #postInput />
   <button (click)="addTodo(postInput)">Add</button>
   <ul>
@@ -16,6 +16,21 @@
       Task Name {{ i.num }} Complete : {{ i.boo }}
       <button (click)="deleteTodo(i)">Delete</button>
     </li>
-  </ul>
-  
+  </ul>  
+</div> -->
+<div>
+  <input placeholder="Enter Todo" [(ngModel)]="text"/>
+  <button (click)="handleAdd()" [disabled]="!text">Add</button>
 </div>
+<ul>
+  <li
+    *ngFor="let s of data.getTodos()"
+    (click)="clickTodo(s.id)"
+    [ngClass]="{ isComplete: s.isComplete }"
+  >
+    Task {{ s.id + ' ' + s.text }} <span *ngIf="s.isComplete">Completed</span>
+    <button (click)="handleDelete(s.id)" class="btn btn-danger">Delete</button>
+  </li>
+</ul>
+
+<app-todo></app-todo>
