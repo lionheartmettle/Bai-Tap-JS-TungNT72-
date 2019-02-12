@@ -1,0 +1,38 @@
+<h1 class="text-primary">{{ title }}</h1>
+<h2 style="display:inline-block">Order By :</h2>
+<select class="form-control" [(ngModel)]="select">
+  <option value="id">Id</option>
+  <option value="firstName">First</option>
+  <option value="lastName">Last</option>
+  <option value="email">Email</option>
+  <option value="gender">Gender</option>
+  <option value="birthday">Birthday</option>
+  <option value="salary">Salary</option>
+  <option value="phone">Phone</option>
+</select>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>First</th>
+      <th>Last</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Birthday</th>
+      <th>Salary</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of data | number : select">
+      <td>{{ p.id }}</td>
+      <td>{{ p.firstName }}</td>
+      <td>{{ p.lastName }}</td>
+      <td>{{ p.email }}</td>
+      <td>{{ p.gender }}</td>
+      <td>{{ p.birthday | date: "d/M/y" }}</td>
+      <td>{{ p.salary }}</td>
+      <td>{{ p.phone }}</td>
+    </tr>
+  </tbody>  
+</table>
