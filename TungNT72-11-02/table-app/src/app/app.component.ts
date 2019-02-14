@@ -11,6 +11,7 @@ export class AppComponent {
   data = [];
   counter = 'id';
   select = '';
+  keySearch = '';
   constructor(private tableService: TableServiceService) {}
 
   // tslint:disable-next-line:use-life-cycle-interface

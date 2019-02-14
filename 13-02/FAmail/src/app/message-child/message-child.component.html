@@ -1,0 +1,27 @@
+<h4>
+  {{ folder }}
+</h4>
+<p>{{userM.us}}</p>
+<button (click)="onChange()" class="btn">Go</button>
+<div class="container show">
+  <table class="table table-hover">
+    <thead>
+      <tr class="row">
+        <th class="col-md-5">Sender</th>
+        <th class="col-md-5">Subject</th>
+        <th class="col-md-2">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row" *ngFor="let me of dataTem" routerLink="{{me._id}}"
+      routerLinkActive="active">
+        <td class="col-md-5">{{me.senderName.first + me.senderName.last}}</td>
+        <td class="col-md-5">{{me.subject}}</td>
+        <td class="col-md-2">{{me.date | date: 'dd/MM/y'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<router-outlet></router-outlet>
+ 

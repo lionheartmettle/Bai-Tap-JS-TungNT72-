@@ -5,7 +5,6 @@
 // use switch case with 7 symbol
 
 function roman(str) {
-  debugger;
   let result = 0;
   let ro = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
 
@@ -54,23 +53,40 @@ function roman(str) {
   return 'Your input Wrong !';
 }
 function test1(ro, id, num, str, index) {
+  debugger;
   if (!str[index + 1]) {
     return num;
   }
   let b = ro.slice(0, id + 1).find(e => e == str[index + 1]);
   if (str[index + 1] == ro[id + 1] || str[index + 1] == ro[id + 2]) {
+    if (index > 0 && str.length > 2) {
+      if (ro.join('').search(b) >= ro.join('').search(str[index - 1])) {
+        return undefined;
+      }
+    }
     return -num;
   }
+
   if (b) {
-    if (b == str[index - 1]) {
+    if (b == str[index]) {
+      if (b == str[index] && b == str[index - 1] && b == str[index - 2]) {
+        return undefined;
+      }
+      if (str[index] == str[index - 1] && str[index] == str[index - 2]) {
+        return num;
+      }
+    }
+    else if (b == str[index - 1]) {
       return undefined;
     }
+
     return num;
   }
+
   return undefined;
 }
 function test2(ro, id, num, str, index) {
-  if (index == 0 || index == str.length - 1) {
+  if (index == str.length - 1) {
     return num;
   }
   let b = ro.slice(0, id).find(e => e == str[index + 1]);
@@ -82,4 +98,3 @@ function test2(ro, id, num, str, index) {
   }
   return undefined;
 }
-console.log(roman("XCIX"));

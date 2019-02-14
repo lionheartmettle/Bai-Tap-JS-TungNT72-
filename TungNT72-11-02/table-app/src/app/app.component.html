@@ -1,15 +1,25 @@
 <h1 class="text-primary">{{ title }}</h1>
 <h2 style="display:inline-block">Order By :</h2>
-<select class="form-control" [(ngModel)]="select">
-  <option value="id">Id</option>
-  <option value="firstName">First</option>
-  <option value="lastName">Last</option>
-  <option value="email">Email</option>
-  <option value="gender">Gender</option>
-  <option value="birthday">Birthday</option>
-  <option value="salary">Salary</option>
-  <option value="phone">Phone</option>
-</select>
+<div style="display:inline-block">
+  <select
+    class="form-control"
+    style="margin-left: 10px; width: 200px"
+    [(ngModel)]="select"
+  >
+    <option value="id">Id</option>
+    <option value="firstName">First</option>
+    <option value="lastName">Last</option>
+    <option value="email">Email</option>
+    <option value="gender">Gender</option>
+    <option value="birthday">Birthday</option>
+    <option value="salary">Salary</option>
+    <option value="phone">Phone</option>
+  </select>
+</div>
+
+<div style="display:inline-block">
+  <input class="form-control" placeholder="Search" [(ngModel)]="keySearch" />
+</div>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -24,15 +34,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of data | number : select">
+    <tr
+      *ngFor="
+        let p of (data
+          | number: select
+          | search: { type: select, value: keySearch }
+          | paginate: { itemsPerPage: 10, currentPage: p })
+      "
+    >
       <td>{{ p.id }}</td>
       <td>{{ p.firstName }}</td>
       <td>{{ p.lastName }}</td>
       <td>{{ p.email }}</td>
       <td>{{ p.gender }}</td>
-      <td>{{ p.birthday | date: "d/M/y" }}</td>
+      <td>{{ p.birthday | date: "dd/M/y" }}</td>
       <td>{{ p.salary }}</td>
       <td>{{ p.phone }}</td>
     </tr>
-  </tbody>  
+  </tbody>
 </table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

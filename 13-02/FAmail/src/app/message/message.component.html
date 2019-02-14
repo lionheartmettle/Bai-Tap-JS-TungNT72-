@@ -1,0 +1,11 @@
+<section class="container-fluid row">
+  <div class="col-md-2">
+    <div class="list-group">
+      <a *ngFor="let f of folders" routerLink="{{f}}"
+      routerLinkActive="active" class="list-group-item list-group-item-action">{{f}}</a>      
+    </div>
+  </div>
+  <div class="col-md-10">
+    <router-outlet></router-outlet>
+  </div>
+</section>

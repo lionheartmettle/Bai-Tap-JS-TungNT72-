@@ -1,0 +1,37 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm bg-light navbar-light row">
+    <!-- Left -->
+    <div class="col-md-9">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/message" routerLinkActive="active"
+            >Message</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active"
+            >Contact</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/preferences"
+            routerLinkActive="active"
+            >Preferences</a
+          >
+        </li>
+      </ul>
+    </div>
+    <!-- Right -->
+    <div class="col-md-3">
+      <select class="form-control" [(ngModel)]="user" (change)="onchange()">
+        <option value="devguy@angular.dev">devguy@angular.dev</option>
+        <option value="devgal@angular.dev">devgal@angular.dev</option>
+        <option value="myself@angular.dev">myself@angular.dev</option>
+      </select>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
