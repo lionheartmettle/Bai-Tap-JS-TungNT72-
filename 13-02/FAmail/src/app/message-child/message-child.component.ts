@@ -1,18 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService, Mes } from '../data.service';
 import { UserService } from '../user.service';
-interface Mes {
-  folder: string;
-  body: string;
-  subject: string;
-  from: string;
-  to: string;
-  date: string;
-  senderName: {last: string; first: string};
-  corpus: string;
-  _id: string;
-}
+
 @Component({
   selector: 'app-message-child',
   templateUrl: './message-child.component.html',

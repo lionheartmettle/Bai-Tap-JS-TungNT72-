@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-interface Mes {
+export interface Mes {
   folder: string;
   body: string;
   subject: string;
