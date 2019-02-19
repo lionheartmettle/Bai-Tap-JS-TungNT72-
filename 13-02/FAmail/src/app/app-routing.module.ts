@@ -8,9 +8,8 @@ import { MessageBodyComponent } from './message-body/message-body.component';
 
 const routes: Routes = [
   {path: 'message', component: MessageComponent, children: [
-    {path: ':messageChild', component: MessageChildComponent, children: [
-      {path: ':id', component: MessageBodyComponent}
-    ]}
+    {path: ':messageChild', component: MessageChildComponent},
+    {path: ':view/:id', component: MessageBodyComponent, outlet: 'emailDetail'}
   ]},
   {path: 'contact', component: ContactComponent},
   {path: 'preferences', component: PreferencesComponent}

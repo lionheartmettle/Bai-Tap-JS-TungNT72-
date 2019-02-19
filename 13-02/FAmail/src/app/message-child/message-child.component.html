@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="row" *ngFor="let me of dataTem" routerLink="{{me._id}}"
+      <tr class="row" *ngFor="let me of dataTem" [routerLink]="['/message',{outlets: {emailDetail: ['view', me._id]}}]"
       routerLinkActive="active">
         <td class="col-md-5">{{me.senderName.first + me.senderName.last}}</td>
         <td class="col-md-5">{{me.subject}}</td>
@@ -22,6 +22,3 @@
     </tbody>
   </table>
 </div>
-<br>
-<router-outlet></router-outlet>
- 
