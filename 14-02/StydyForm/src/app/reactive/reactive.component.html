@@ -1,0 +1,142 @@
+<div class="text-center" style="background-color: #a9d7d1; padding: 20px">
+  <h1>Survey Form - Reactive</h1>
+  <div
+    class="container bg-light"
+    style="padding: 20px; margin-top: 20px; width: 75%"
+  >
+    <p>Let us know how we can improve freeCodeCamp</p>
+    <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+      <div class="form-group">
+        <label for="">*Name : </label>
+        <input
+          type="text"
+          placeholder=" Enter your email"
+          formControlName="name"
+        />
+        <i
+          *ngIf="
+            (myForm.controls.name.touched || myForm.controls.name.dirty) &&
+            myForm.controls.name.invalid &&
+            myForm.controls.name.errors.required
+          "
+          >Name is required</i
+        >
+      </div>
+      <div class="form-group">
+        <label for=""> *Email : </label>
+        <input
+          type="text"
+          placeholder=" Enter your email"
+          formControlName="email"
+        />
+        <i
+          *ngIf="
+            (myForm.controls.email.touched || myForm.controls.email.dirty) &&
+            myForm.controls.email.invalid &&
+            myForm.controls.email.errors.required
+          "
+          >Email is required</i
+        >
+        <i
+          *ngIf="
+            (myForm.controls.email.touched || myForm.controls.email.dirty) &&
+            myForm.controls.email.invalid &&
+            myForm.controls.email.errors.email
+          "
+          >Value has to be a valid email address.</i
+        >
+      </div>
+      <div class="form-group ">
+        <label for="">*Age : </label>
+        <input type="number" placeholder=" Age" formControlName="age" />
+        <i
+          *ngIf="
+            (myForm.controls.age.touched || myForm.controls.age.dirty) &&
+            myForm.controls.age.invalid &&
+            myForm.controls.age.errors.required
+          "
+          >Age is required</i
+        >
+        <i
+          *ngIf="
+            (myForm.controls.age.touched || myForm.controls.age.dirty) &&
+            myForm.controls.age.invalid &&
+            myForm.controls.age.errors.age
+          "
+          >Age is unposible</i
+        >
+      </div>
+      <div class="form-group">
+        <label for="">Which option best describes your current role? </label>
+        <select class="custom-select" formControlName="selectRoll">
+          <option disabled value="x">Select an option</option>
+          <option *ngFor="let sr of listRoll" value="{{ sr }}">{{ sr }}</option>
+        </select>
+      </div>
+      <div class="radio">
+        <label id="r1"
+          >*How likely is that you would recommend freeCodeCamp to a friend?
+        </label>
+        <div>
+          <ul style="list-style: none;">
+            <li>
+              <input type="radio" value="Definitely" formControlName="radio" />
+              <label>Definitely</label>
+            </li>
+            <li>
+              <input type="radio" [value]="'Maybe'" formControlName="radio" />
+              <label>Maybe</label>
+            </li>
+            <li>
+              <input
+                type="radio"
+                [value]="'Not Sure'"
+                formControlName="radio"
+              />
+              <label>Not sure</label>
+            </li>
+          </ul>
+        </div>
+        <i *ngIf="myForm.controls.radio.invalid">Radio is required</i>
+      </div>
+      <div class="form-group">
+        <label for="">What do you like most in FCC: </label>
+        <select class="custom-select" formControlName="selectFCC">
+          <option disabled value="x">Select an option</option>
+          <option value="challenges">Chanllengers</option>
+          <option value="projects">Projects</option>
+          <option value="community">Community</option>
+          <option value="openSource">Open Source</option>
+        </select>
+      </div>
+      <div class="check-box">
+        <label id="r2"
+          >Things that should be improved in the future (Check all that apply):
+        </label>
+        <div>
+          <ul style="list-style: none;">
+            <li
+              formArrayName="arrCheck"
+              *ngFor="let c of myForm.controls.arrCheck.controls; let i = index"
+            >
+              <input type="checkbox" [formControlName]="i" />
+              <label>{{ arrCheck[i].value }}</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="">Any Comments or Suggestions? </label>
+        <textarea
+          placeholder=" Enter your comment here..."
+          formControlName="comment"
+        ></textarea>
+      </div>
+      <button class="btn" [disabled]="!myForm.valid" type="submit">
+        Submit
+      </button>
+    </form>
+    {{ myForm.value | json }} <br />
+    <!-- {{ myCheck.value | json }} -->
+  </div>
+</div>

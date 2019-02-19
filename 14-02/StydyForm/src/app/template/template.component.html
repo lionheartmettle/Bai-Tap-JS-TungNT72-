@@ -1,0 +1,84 @@
+<div class="text-center" style="background-color: #a9d7d1; padding: 20px">
+  <h1>Survey Form - Template</h1>
+  <div class="container bg-light" style="padding: 20px; margin-top: 20px; width: 75%">
+    <p>Let us know how we can improve freeCodeCamp</p>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm, myCheck)">
+      <div class="form-group">
+        <label for="">*Name : </label>
+        <input type="text" placeholder=" Enter your email" required [(ngModel)]="name" name="name" #nameF="ngModel">
+        <i [hidden]="nameF.valid || nameF.pristine">Name is required</i>
+      </div>
+      <div class="form-group">
+        <label for=""> *Email : </label>
+        <input type="text" placeholder=" Enter your email" name="email" required [(ngModel)]="email" #emailF="ngModel">
+        <i [hidden]="emailF.valid || emailF.pristine">Email is required</i>
+      </div>
+      <div class="form-group ">
+        <label for="">*Age : </label>
+        <input type="number" min="1" max="150" placeholder=" Age" name="age" required [(ngModel)]="age" #ageF="ngModel">
+        <i [hidden]="ageF.valid || ageF.pristine">Age is required</i>
+      </div>
+      <div class="form-group">
+        <label for="">Which option best describes your current role? </label>
+        <select class="custom-select" name="select" [(ngModel)]="select">
+          <option disabled value="x" selected>Select an option</option>
+          <option value="student">Student</option>
+          <option value="job">Full Time Job</option>
+          <option value="learner">Full Time Learner</option>
+          <option value="preferNo">Prefer not to say</option>
+          <option value="other">Other</option>
+        </select>        
+      </div>
+      <div class="radio">
+        <label id="r1">*How likely is that you would recommend freeCodeCamp to a friend? </label>
+        <div>
+          <ul style="list-style: none;" >
+              <li>
+                <input type="radio" name="radio" value="Definitely" [(ngModel)]="radio" required>
+                <label>Definitely</label>
+              </li>
+              <li>
+                <input type="radio" name="radio" [value]="'Maybe'" [(ngModel)]="radio" required>
+                <label>Maybe</label>
+              </li>
+              <li>
+                <input type="radio" name="radio" [value]="'Not Sure'" [(ngModel)]="radio" required>
+                <label>Not sure</label>
+              </li>
+            </ul>
+        </div>
+        <i [hidden]="radio">Radio is required</i>
+      </div>
+      <div class="form-group">
+        <label for="">What do you like most in FCC: </label>
+        <select class="custom-select" name="selectFCC" [(ngModel)]="selectFCC">
+          <option disabled value="x" selected >Select an option</option>
+          <option value="challenges">Chanllengers</option>
+          <option value="projects">Projects</option>
+          <option value="community">Community</option>
+          <option value="openSource">Open Source</option>
+        </select>
+      </div>
+      <div class="check-box">
+        <label id="r2">Things that should be improved in the future (Check all that apply): </label>
+        <div ngModelGroup="checkboxs" #myCheck="ngModelGroup">
+          <ul style="list-style: none;">
+            <li *ngFor="let c of listCheck">
+              <input type="checkbox" name="{{c}}" ngModel>
+              <label>{{c}}</label>
+            </li>              
+          </ul>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="">Any Comments or Suggestions? </label>
+        <textarea placeholder=" Enter your comment here..." name="comment" [(ngModel)]="comment"></textarea>
+      </div>
+      <button class="btn" type="submit" [disabled]="!myForm.valid">Submit</button>
+    </form>
+    {{myForm.value | json}} <br>
+    {{myCheck.value | json}}
+    
+    
+  </div>
+</div>

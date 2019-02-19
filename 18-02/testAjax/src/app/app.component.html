@@ -1,0 +1,22 @@
+<br>
+<div class="container" >
+    <h3>Input the Name of Singer : </h3>
+    <input class="form-control" type="text" [(ngModel)]="search" (keyup)="searchMusic($event)">
+</div>
+<br>
+<div class="container" style="overflow-y: scroll; height: 430px">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of a" style="margin-bottom: 30px">            
+            <div *ngFor="let img of item.images;let i = index">
+                <img *ngIf="i==0" [src]="img.url" style="width: 100%">
+            </div>
+            <div >
+                <p>{{item.name}}</p>
+            </div>
+            <div>
+                <button class="btn" *ngIf="item.name != null" (click)="sendData(item.id)"><a routerLink="/track" routerLinkActive="active">View</a></button>
+            </div>
+        </div>
+    </div>    
+</div>
+<router-outlet></router-outlet>

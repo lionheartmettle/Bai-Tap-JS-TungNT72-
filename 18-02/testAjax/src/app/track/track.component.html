@@ -1,0 +1,12 @@
+<div class="container">
+  <ul class="list-group" *ngFor="let tr of abc.tracks.tracks">
+    <li class="list-group-item">
+      {{tr.name}}
+      <img [src]="tr.album.images[0]?.url" alt="">
+      <audio controls>
+        <source [src]="tr.preview_url" type="audio/mpeg">
+      </audio>
+    </li>
+  </ul>
+</div>
+
