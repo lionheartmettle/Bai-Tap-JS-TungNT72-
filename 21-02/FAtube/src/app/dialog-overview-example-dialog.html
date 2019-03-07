@@ -1,0 +1,17 @@
+
+<div mat-dialog-content>
+    <p>What's your favorite number per page?</p>
+    <mat-slider
+        [disabled]="disabled"
+        max="12"
+        min="1"
+        thumbLabel="true"
+        [(ngModel)]="data.slide"
+        width="100%"
+    >
+    </mat-slider>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.slide" cdkFocusInitial>Ok</button>
+</div>

@@ -1,6 +1,20 @@
-<mat-form-field class="input">
-  <input matInput type="text" placeholder="Search..." [(ngModel)]="value" color="primary">
-  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
+<div class="input">
+  <mat-form-field class="example-form">
+    <input matInput type="text" placeholder="Search..." [(ngModel)]="value" (keyup)="input($event)" color="primary">
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="button()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div class="select">
+  <mat-form-field>
+    <mat-select [(value)]="selected">
+      <mat-option (click)="selectChange()" value="relevance">Chose follow ...</mat-option>
+      <mat-option (click)="selectChange()" value="date">Date</mat-option>
+      <mat-option (click)="selectChange()" value="viewCount">View Count</mat-option>
+      <mat-option (click)="selectChange()" value="rating">Rating</mat-option>
+      <mat-option (click)="selectChange()" value="title">Title</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<br class="clear">

@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 .detail {
-    margin: 5%;
+    /* margin: 5%; */
 }
 .video {
     float: left;
@@ -17,6 +17,9 @@
     margin-left: 1%;
     border: 0px solid black;
     border-radius: 10px;
-    height: 345px;
-    box-shadow: 5px 10px 8px 10px #888888;
-}   
+    height: 250px;
+    box-shadow:  0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    overflow-y: scroll;
+}
+
+ 

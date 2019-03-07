@@ -1,11 +1,18 @@
-<div class="detail">
+<div class="detail" *ngFor="let d of dataSearch.detail?.items">
   <div class="video">
-    <iframe width="100%" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+    <iframe [src]='sanitizer.bypassSecurityTrustResourceUrl(myUrl)' width="100%" height="250px" frameborder="0"
+    webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </div>
   <div class="conten">
-    <h4>View : </h4>
-
+    <h4>{{d.snippet.title}}</h4>
+    <h5>View : {{d.statistics.viewCount}}</h5>
+    <h5>Comment : {{d.statistics.commentCount}}</h5>
+    <h5>Dislike : {{d.statistics.dislikeCount}}</h5>
+    <h5>Like : {{d.statistics.likeCount}}</h5>
+    <h5>Favorite : {{d.statistics.favoriteCount}}</h5>
+    <p>{{d.snippet.publishedAt | date}}</p>
+    <p>{{d.snippet.description}}</p>
   </div>
   <br style="clear: both">
 </div>

@@ -1,4 +1,9 @@
 h1 {
     text-align: center;
     font-size: 50px;
+    color: deeppink;
+    margin-bottom: 0px;
+}
+.menu {
+    display: inline-block;
 }
